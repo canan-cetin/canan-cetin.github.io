@@ -11,13 +11,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink:       #1a1614;
-      --paper:     #f5f0e8;
-      --cream:     #ede7d9;
-      --terracotta:#b85c38;
-      --rust:      #8b3a20;
-      --muted:     #6b6258;
-      --line:      #d8cfc3;
+      --ink:       #4a3570;
+      --paper:     #fdf9ff;
+      --cream:     #f3eeff;
+      --terracotta:#e8843a;
+      --rust:      #c96820;
+      --muted:     #9b88c0;
+      --line:      #e4d8f8;
     }
 
     html { scroll-behavior: smooth; }
@@ -54,8 +54,8 @@
     .header-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 70% 30%, #2d1f18 0%, transparent 60%),
-        radial-gradient(ellipse 50% 80% at 10% 80%, #3a1a0a 0%, transparent 55%),
+        radial-gradient(ellipse 80% 60% at 70% 30%, #3d2860 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, #2e1f50 0%, transparent 55%),
         var(--ink);
     }
 
@@ -134,7 +134,7 @@
       margin-top: 2.5rem;
       max-width: 540px;
       font-size: 0.9rem;
-      color: #9a8f85;
+      color: #9a8ab5;
       line-height: 1.7;
       opacity: 0;
       animation: fadeUp 0.8s 0.8s forwards;
@@ -205,7 +205,7 @@
     }
 
     .about-text p {
-      color: #3d3530;
+      color: #5a4878;
       margin-bottom: 1.2rem;
       font-size: 0.95rem;
     }
@@ -412,12 +412,8 @@
     }
 
     /* ─── CONTACT ─── */
-    #contact {
-      background: var(--ink);
-      margin: 0 -6vw;
-      padding: 7rem 6vw;
-    }
-    #contact .section-label { color: #5a4e46; }
+    #contact { background: var(--ink); margin: 0 -6vw; padding: 7rem 6vw; }
+    #contact .section-label { color: #8a70b0; }
     #contact h2 { color: var(--paper); }
 
     .contact-grid {
@@ -426,46 +422,16 @@
       gap: 6rem;
       margin-top: 3rem;
     }
-    .contact-text { color: #9a8f85; font-size: 0.92rem; line-height: 1.8; }
+    .contact-text { color: #9a8ab5; font-size: 0.92rem; line-height: 1.8; }
     .contact-links { list-style: none; }
-    .contact-links li {
-      padding: 1rem 0;
-      border-bottom: 1px solid #2d2520;
-      display: flex;
-      justify-content: space-between;
-    }
-    .contact-links label {
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #5a4e46;
-    }
-    .contact-links a {
-      font-size: 0.85rem;
-      color: var(--paper);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .contact-links li { padding: 1rem 0; border-bottom: 1px solid #5a4888; display: flex; justify-content: space-between; }
+    .contact-links label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8a70b0; }
+    .contact-links a { font-size: 0.85rem; color: var(--paper); text-decoration: none; transition: color 0.2s; }
     .contact-links a:hover { color: var(--terracotta); }
 
-    footer {
-      background: var(--ink);
-      padding: 2rem 6vw;
-      border-top: 1px solid #2d2520;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-copy {
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      color: #3d3028;
-    }
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      color: #5a4e46;
-    }
+    footer { background: var(--ink); padding: 2rem 6vw; border-top: 1px solid #5a4888; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.68rem; letter-spacing: 0.1em; color: #7a65a0; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #8a70b0; }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
@@ -521,15 +487,11 @@
     <div class="header-meta">
       <div class="meta-item">
         <label>Current Position</label>
-        <span>Visiting Research Fellow, University of Sussex</span>
+        <span>Lecturer, Eskişehir Osmangazi University</span>
       </div>
       <div class="meta-item">
-        <label>Home Institution</label>
-        <span>Eskişehir Osmangazi University</span>
-      </div>
-      <div class="meta-item">
-        <label>Funded by</label>
-        <span>TÜBİTAK 2219</span>
+        <label>Previous Fellowship</label>
+        <span>Visiting Research Fellow, University of Sussex (2024–2025)</span>
       </div>
     </div>
   </div>
@@ -553,7 +515,7 @@
           My methodological toolkit draws from quantitative media analysis, survey design, gravity modelling, and visual framing theory. I am equally at home with large-scale datasets and ethnographically grounded field research.
         </p>
         <p>
-          Currently based at the University of Sussex as a TÜBİTAK Visiting Research Fellow, I hold a permanent lectureship at Eskişehir Osmangazi University, where I have taught since 2018.
+          Currently a Lecturer at Eskişehir Osmangazi University, where I have taught since 2018. I completed a TÜBİTAK-funded Visiting Research Fellowship at the University of Sussex (2024–2025).
         </p>
         <div class="research-tags">
           <span class="tag">Migration</span>
@@ -869,7 +831,7 @@
     <h2 class="reveal">Get in<br>Touch</h2>
     <div class="contact-grid">
       <p class="contact-text reveal">
-        I welcome correspondence on research collaborations, conference invitations, peer review, and supervision inquiries. I am currently based in the UK as a Visiting Research Fellow and return to Türkiye in Summer 2025.
+        I welcome correspondence on research collaborations, conference invitations, peer review, and supervision inquiries.
       </p>
       <ul class="contact-links reveal">
         <li>
@@ -878,11 +840,11 @@
         </li>
         <li>
           <label>Institutional Email</label>
-          <a href="mailto:ccc53@sussex.ac.uk">ccc53@sussex.ac.uk</a>
+          <a href="mailto:cetinc@ogu.edu.tr">cetinc@ogu.edu.tr</a>
         </li>
         <li>
           <label>Institution</label>
-          <a href="https://www.sussex.ac.uk" target="_blank">University of Sussex, Brighton, UK</a>
+          <a href="https://www.ogu.edu.tr" target="_blank">Eskişehir Osmangazi University, Türkiye</a>
         </li>
       </ul>
     </div>

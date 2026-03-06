@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canan Çetin, PhD — Political Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1614;
+      --paper:     #f5f0e8;
+      --cream:     #ede7d9;
+      --terracotta:#b85c38;
+      --rust:      #8b3a20;
+      --muted:     #6b6258;
+      --line:      #d8cfc3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 6vw 6vh;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .header-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, #2d1f18 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, #3a1a0a 0%, transparent 55%),
+        var(--ink);
+    }
+
+    .header-rule {
+      position: absolute;
+      top: 0; left: 6vw; right: 6vw;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), transparent);
+    }
+
+    .nav-bar {
+      position: absolute;
+      top: 2rem; left: 6vw; right: 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--line);
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+
+    .header-content {
+      position: relative; z-index: 5;
+    }
+
+    .header-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 10vw, 8.5rem);
+      line-height: 0.9;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .header-tagline {
+      margin-top: 2.5rem;
+      max-width: 540px;
+      font-size: 0.9rem;
+      color: #9a8f85;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .header-meta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s forwards;
+    }
+
+    .meta-item label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .meta-item span {
+      font-size: 0.85rem;
+      color: #c5b8ae;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem; right: 6vw;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.4s forwards;
+    }
+
+    /* ─── MAIN ─── */
+    main { max-width: 1200px; margin: 0 auto; padding: 0 6vw; }
+
+    section { padding: 7rem 0; border-bottom: 1px solid var(--line); }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: #3d3530;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .research-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .tag:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+    .positions-list { list-style: none; }
+    .positions-list li {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .positions-list li:first-child { padding-top: 0; }
+    .pos-title { font-size: 0.88rem; color: var(--ink); }
+    .pos-place { font-size: 0.8rem; color: var(--muted); font-style: italic; }
+    .pos-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--terracotta);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: background 0.2s;
+    }
+    .pub-entry:last-child { border-bottom: none; }
+
+    .pub-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--line);
+      line-height: 1;
+      padding-top: 0.2rem;
+    }
+
+    .pub-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-journal {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .pub-coauthor {
+      font-size: 0.72rem;
+      color: var(--terracotta);
+      margin-top: 0.3rem;
+    }
+
+    .pub-doi {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .pub-doi:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+    .pub-badge {
+      display: inline-block;
+      background: var(--terracotta);
+      color: white;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      margin-left: 0.6rem;
+      vertical-align: middle;
+    }
+
+    /* ─── BOOKS ─── */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .book-card {
+      background: var(--cream);
+      padding: 2rem;
+      border-left: 3px solid var(--terracotta);
+      transition: transform 0.25s;
+    }
+    .book-card:hover { transform: translateY(-4px); }
+
+    .book-type {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+    }
+    .book-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+    .book-meta { font-size: 0.75rem; color: var(--muted); }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .project-card {
+      padding: 2rem;
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      height: 2px; width: 0;
+      background: var(--terracotta);
+      transition: width 0.4s;
+    }
+    .project-card:hover::after { width: 100%; }
+
+    .project-role {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.7rem;
+    }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .project-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .project-funder {
+      margin-top: 1rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+    }
+
+    /* ─── HONOURS ─── */
+    .honours-list { list-style: none; }
+    .honours-list li {
+      padding: 1rem 0;
+      border-bottom: 1px dotted var(--line);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+    .hon-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      margin-top: 0.6rem;
+      flex-shrink: 0;
+    }
+    .hon-title { font-size: 0.88rem; }
+    .hon-org { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .hon-year {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--terracotta);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--ink);
+      margin: 0 -6vw;
+      padding: 7rem 6vw;
+    }
+    #contact .section-label { color: #5a4e46; }
+    #contact h2 { color: var(--paper); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      margin-top: 3rem;
+    }
+    .contact-text { color: #9a8f85; font-size: 0.92rem; line-height: 1.8; }
+    .contact-links { list-style: none; }
+    .contact-links li {
+      padding: 1rem 0;
+      border-bottom: 1px solid #2d2520;
+      display: flex;
+      justify-content: space-between;
+    }
+    .contact-links label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #5a4e46;
+    }
+    .contact-links a {
+      font-size: 0.85rem;
+      color: var(--paper);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: var(--terracotta); }
+
+    footer {
+      background: var(--ink);
+      padding: 2rem 6vw;
+      border-top: 1px solid #2d2520;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: #3d3028;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: #5a4e46;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .about-grid, .contact-grid, .projects-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+      .header-meta { flex-wrap: wrap; gap: 1.5rem; }
+      .pub-entry { grid-template-columns: 50px 1fr; }
+      .honours-list li { grid-template-columns: auto 1fr; }
+      .hon-year { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="header-bg"></div>
+  <div class="header-rule"></div>
+
+  <nav class="nav-bar">
+    <span class="nav-logo">Canan Çetin</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-content">
+    <p class="header-eyebrow">Political Scientist · PhD</p>
+    <h1>Canan<br><em>Çetin</em></h1>
+    <p class="header-tagline">
+      Studying migration, media framing, and political communication — with a focus on the Global South, authoritarianism, and the politics of visibility.
+    </p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <label>Current Position</label>
+        <span>Visiting Research Fellow, University of Sussex</span>
+      </div>
+      <div class="meta-item">
+        <label>Home Institution</label>
+        <span>Eskişehir Osmangazi University</span>
+      </div>
+      <div class="meta-item">
+        <label>Funded by</label>
+        <span>TÜBİTAK 2219</span>
+      </div>
+    </div>
+  </div>
+
+  <span class="scroll-hint">Scroll to explore</span>
+</header>
+
+<!-- ══════════ MAIN ══════════ -->
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">01 — Profile</p>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h2>Migration,<br>Media &<br>Power</h2>
+        <p>
+          I am a political scientist whose work sits at the crossroads of political communication, migration studies, and gender politics. My research examines how media constructs and circulates narratives about migrants and refugees — particularly how visual and discursive framing strategies serve political ends during electoral cycles and authoritarian consolidation.
+        </p>
+        <p>
+          My methodological toolkit draws from quantitative media analysis, survey design, gravity modelling, and visual framing theory. I am equally at home with large-scale datasets and ethnographically grounded field research.
+        </p>
+        <p>
+          Currently based at the University of Sussex as a TÜBİTAK Visiting Research Fellow, I hold a permanent lectureship at Eskişehir Osmangazi University, where I have taught since 2018.
+        </p>
+        <div class="research-tags">
+          <span class="tag">Migration</span>
+          <span class="tag">Political Communication</span>
+          <span class="tag">Authoritarianism</span>
+          <span class="tag">Gender & Politics</span>
+          <span class="tag">Media Framing</span>
+          <span class="tag">Visual Analysis</span>
+          <span class="tag">Global South</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p class="section-label" style="margin-bottom:1.5rem">Academic Positions</p>
+        <ul class="positions-list">
+          <li>
+            <div>
+              <div class="pos-title">Visiting Research Fellow</div>
+              <div class="pos-place">University of Sussex, UK</div>
+            </div>
+            <span class="pos-date">2024–2025</span>
+          </li>
+          <li>
+            <div>
+              <div class="pos-title">Lecturer</div>
+              <div class="pos-place">Eskişehir Osmangazi University, TR</div>
+            </div>
+            <span class="pos-date">2018–present</span>
+          </li>
+          <li>
+            <div>
+              <div class="pos-title">Research Assistant</div>
+              <div class="pos-place">Ankara Yıldırım Beyazıt University, TR</div>
+            </div>
+            <span class="pos-date">2014–2018</span>
+          </li>
+          <li>
+            <div>
+              <div class="pos-title">Research Assistant</div>
+              <div class="pos-place">TOBB University of Economics and Technology</div>
+            </div>
+            <span class="pos-date">2013–2014</span>
+          </li>
+        </ul>
+
+        <p class="section-label" style="margin-top:3rem; margin-bottom:1.5rem">Education</p>
+        <ul class="positions-list">
+          <li>
+            <div>
+              <div class="pos-title">PhD, Political Science &amp; Int'l Relations</div>
+              <div class="pos-place">Anadolu University</div>
+            </div>
+            <span class="pos-date">2022</span>
+          </li>
+          <li>
+            <div>
+              <div class="pos-title">MA, Politics &amp; International Studies</div>
+              <div class="pos-place">University of Warwick, UK</div>
+            </div>
+            <span class="pos-date">2016</span>
+          </li>
+          <li>
+            <div>
+              <div class="pos-title">BA, International Relations</div>
+              <div class="pos-place">TOBB ETU</div>
+            </div>
+            <span class="pos-date">2013</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <p class="section-label reveal">02 — Peer-Reviewed Articles</p>
+    <h2 class="reveal">Selected<br>Publications</h2>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2026</div>
+      <div>
+        <div class="pub-title">Domesticity reloaded: when the tradwife becomes a brand <span class="pub-badge">New</span></div>
+        <div class="pub-journal">Feminist Media Studies</div>
+        <div class="pub-coauthor">with A. Karakaş Aydınbakar</div>
+        <a class="pub-doi" href="https://doi.org/10.1080/14680777.2026.2620772" target="_blank">doi:10.1080/14680777.2026.2620772 ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2026</div>
+      <div>
+        <div class="pub-title">The portrait of Syrians: Media framing across electoral cycle in Türkiye</div>
+        <div class="pub-journal">Siyasal: Journal of Political Sciences — Advance Online</div>
+        <a class="pub-doi" href="https://doi.org/10.26650/siyasal.2025.35.1548684" target="_blank">doi:10.26650/siyasal ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">From faces to faceless: visual framing of migrant children in British media</div>
+        <div class="pub-journal">Journal of Ethnic and Migration Studies</div>
+        <a class="pub-doi" href="https://doi.org/10.1080/1369183X.2025.2594672" target="_blank">doi:10.1080/1369183X ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Invisible Lives, Visible Struggles: A Digital Analysis of Migrant Women in Türkiye</div>
+        <div class="pub-journal">Kadın/Woman 2000, Journal for Women's Studies, 26(2)</div>
+        <div class="pub-coauthor">with S. Koçoğlu</div>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Visual Stratification: Representations of Immigrant and Refugee Women in UK Media</div>
+        <div class="pub-journal">Fiscaoeconomia, 9 — Special Issue on Gender</div>
+        <a class="pub-doi" href="https://doi.org/10.25295/fsecon.1717131" target="_blank">doi:10.25295/fsecon ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Russian exodus: mobility and gravity</div>
+        <div class="pub-journal">Çukurova Üniversitesi Sosyal Bilimler Enstitüsü Dergisi, 34(2)</div>
+        <div class="pub-coauthor">with S. Uysal</div>
+        <a class="pub-doi" href="https://doi.org/10.35379/cusosbil.1623953" target="_blank">doi:10.35379/cusosbil ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Cultural Connections: How Dance Fosters Integration and Unity</div>
+        <div class="pub-journal">Amicus Curiae, 6(2)</div>
+        <div class="pub-coauthor">with C. Uysal, K. Islı, C. Öcalan</div>
+        <a class="pub-doi" href="https://doi.org/10.14296/ac.v6i2.5754" target="_blank">doi:10.14296/ac ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2024</div>
+      <div>
+        <div class="pub-title">Narratives of Securitization: Media Portrayals of Refugees in Türkiye During Election Periods</div>
+        <div class="pub-journal">İletişim Kuram ve Araştırma Dergisi, Issue 68</div>
+        <div class="pub-coauthor">with M. Gürelli</div>
+        <a class="pub-doi" href="https://doi.org/10.47998/ikad.1468819" target="_blank">doi:10.47998/ikad ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2023</div>
+      <div>
+        <div class="pub-title">In What Ways is the State Gendered?</div>
+        <div class="pub-journal">İstanbul Üniversitesi Kadın Araştırmaları Dergisi, 27</div>
+        <a class="pub-doi" href="https://doi.org/10.26650/iukad.2023.1261941" target="_blank">doi:10.26650/iukad ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-entry reveal">
+      <div class="pub-year">2019</div>
+      <div>
+        <div class="pub-title">Gravity Approach Applied to Central Asian Migration Flow</div>
+        <div class="pub-journal">Göç Araştırmaları Dergisi, 5(2)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKS -->
+  <section id="books">
+    <p class="section-label reveal">03 — Books &amp; Chapters</p>
+    <h2 class="reveal">Books, Chapters<br>&amp; Edited Volumes</h2>
+    <div class="books-grid">
+      <div class="book-card reveal">
+        <div class="book-type">Book Chapter — Palgrave</div>
+        <div class="book-title">Media Bias and Political Influence</div>
+        <div class="book-meta">In: The Palgrave Handbook of Global Social Problems (2026) — with O. Aksu</div>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-type">Edited Volume</div>
+        <div class="book-title">Echoes Beyond Borders: Refugees, Migration, and Existence</div>
+        <div class="book-meta">Nobel Yayıncılık, Ankara (2023) — Editor · ISBN 9786253932756</div>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-type">Book Chapter — Palgrave</div>
+        <div class="book-title">Allocation of Scarce Resources with Refugees Amid COVID-19</div>
+        <div class="book-meta">The Palgrave Handbook of Global Social Problems (2024)</div>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-type">Book Chapter</div>
+        <div class="book-title">The Situation of Syrian Refugees Through the Homo Sacer Analogy</div>
+        <div class="book-meta">Comparative analysis of Germany and Türkiye · Özgür Yayınları (2023)</div>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-type">Book Chapter</div>
+        <div class="book-title">Perceptions Towards Syrian Refugees: Integrated Threat Theory</div>
+        <div class="book-meta">In: Contemporary Analysis on Immigration Issue in Europe and Turkey · Akcag (2021)</div>
+      </div>
+      <div class="book-card reveal">
+        <div class="book-type">Book Chapter</div>
+        <div class="book-title">The Revitalisation of the Silk Road: Theoretical Challenges and Policy Implications</div>
+        <div class="book-meta">In: Sosyal Bilimler Üzerine Araştırmalar–III · Özgür Yayınları (2023)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">04 — Research Projects</p>
+    <h2 class="reveal">Grants &amp;<br>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-role">Director</div>
+        <div class="project-title">The Representation of Syrians on Turkish Media During Elections</div>
+        <div class="project-desc">Comprehensive quantitative media analysis. Constructed large-scale dataset of election news coverage; applied regression analysis to measure correlation between framing strategies and political polarization.</div>
+        <div class="project-funder">ESOGU Scientific Research Project · 2023–2024</div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-role">Consultant</div>
+        <div class="project-title">Crossroad of Populism and Gender: Meloni in International Conferences</div>
+        <div class="project-desc">Investigating populist discourse strategies and gendered political messaging through systematic thematic analysis of international political speeches.</div>
+        <div class="project-funder">TÜBİTAK-2209 · 2026–2027</div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-role">Consultant</div>
+        <div class="project-title">Baseline Needs &amp; Market Assessment for Marginalized Youth in Turkey</div>
+        <div class="project-desc">Mixed-methods field study combining large-scale surveys and Focus Group Discussions; quantitative analysis in SPSS and thematic analysis of qualitative data.</div>
+        <div class="project-funder">PACT (USA) · 2023</div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-role">Consultant</div>
+        <div class="project-title">All the Same with Dance</div>
+        <div class="project-desc">Quasi-experimental study measuring attitude change through inter-group contact via cultural intervention. Pre-test/post-test design with two control groups.</div>
+        <div class="project-funder">TÜBİTAK-2209 · 2022–2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONOURS -->
+  <section id="honours">
+    <p class="section-label reveal">05 — Honours</p>
+    <h2 class="reveal">Scholarships,<br>Grants &amp; Awards</h2>
+    <ul class="honours-list">
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">Travel Grant — Berlin Knowledge Frontier Symposium</div>
+          <div class="hon-org">British Academy &amp; Alexander von Humboldt Foundation</div>
+        </div>
+        <span class="hon-year">2025</span>
+      </li>
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">Visiting Research Fellowship</div>
+          <div class="hon-org">TÜBİTAK 2219 — University of Sussex, UK</div>
+        </div>
+        <span class="hon-year">2024–25</span>
+      </li>
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">Outgoing Staff — Erasmus Programme</div>
+          <div class="hon-org">International Balkan University, North Macedonia</div>
+        </div>
+        <span class="hon-year">2024</span>
+      </li>
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">Travel Grant</div>
+          <div class="hon-org">Free University of Bozen-Bolzano, Italy</div>
+        </div>
+        <span class="hon-year">2023</span>
+      </li>
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">Travel Grant — GRITIM Migration Summer School</div>
+          <div class="hon-org">Pompeu Fabra University, Barcelona</div>
+        </div>
+        <span class="hon-year">2021</span>
+      </li>
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">MA Scholarship</div>
+          <div class="hon-org">Ministry of Education, Republic of Türkiye — University of Warwick</div>
+        </div>
+        <span class="hon-year">2014–16</span>
+      </li>
+      <li class="reveal">
+        <span class="hon-dot"></span>
+        <div>
+          <div class="hon-title">Full BA Scholarship</div>
+          <div class="hon-org">TOBB ETU</div>
+        </div>
+        <span class="hon-year">2008–13</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:1200px; margin:0 auto; padding: 0 6vw;">
+    <p class="section-label reveal">06 — Contact</p>
+    <h2 class="reveal">Get in<br>Touch</h2>
+    <div class="contact-grid">
+      <p class="contact-text reveal">
+        I welcome correspondence on research collaborations, conference invitations, peer review, and supervision inquiries. I am currently based in the UK as a Visiting Research Fellow and return to Türkiye in Summer 2025.
+      </p>
+      <ul class="contact-links reveal">
+        <li>
+          <label>Personal Email</label>
+          <a href="mailto:canantune@gmail.com">canantune@gmail.com</a>
+        </li>
+        <li>
+          <label>Institutional Email</label>
+          <a href="mailto:ccc53@sussex.ac.uk">ccc53@sussex.ac.uk</a>
+        </li>
+        <li>
+          <label>Institution</label>
+          <a href="https://www.sussex.ac.uk" target="_blank">University of Sussex, Brighton, UK</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2025 Canan Çetin. All rights reserved.</span>
+  <span class="footer-name">Canan Çetin, PhD</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i * 0.04) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--terracotta)' : '';
+    });
+  });
+</script>
+</body>
+</html>

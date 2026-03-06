@@ -852,7 +852,7 @@
 </section>
 
 <footer>
-  <span class="footer-copy">© 2026 Canan Çetin. All rights reserved.</span>
+  <span class="footer-copy">© 2025 Canan Çetin. All rights reserved.</span>
   <span class="footer-name">Canan Çetin, PhD</span>
 </footer>
 
@@ -873,4 +873,16 @@
 
   // Active nav highlight
   const sections = document.querySelectorAll('section[id]');
-  const navLinks =
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--terracotta)' : '';
+    });
+  });
+</script>
+</body>
+</html>
